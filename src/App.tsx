@@ -1,11 +1,16 @@
 import React from 'react';
-import './App.css';
+import {Route, Routes} from "react-router-dom";
+import Tasks from "./containers/Tasks/Tasks";
 
 function App() {
   return (
-    <div className="App">
-
-    </div>
+    <>
+      <Routes>
+        <Route path='/' element={(
+          <Tasks/>
+        )}/>
+      </Routes>
+    </>
   );
 }
 
