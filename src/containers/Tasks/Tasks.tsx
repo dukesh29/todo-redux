@@ -16,9 +16,6 @@ const Tasks = () => {
     await dispatch(fetchTasks());
   };
 
-// const loadingState = useAppSelector(state => state.dishes.fetchLoading);
-
-
   useEffect(() => {
     dispatch(fetchTasks());
   }, [dispatch]);

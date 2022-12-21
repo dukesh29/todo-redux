@@ -2,29 +2,24 @@ import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {ApiTasksList, Task, TaskApi} from "../../type";
 import axiosApi from "../../axiosApi";
 
-
 export const fetchTasks = createAsyncThunk(
   'tasks/fetch',
   async () => {
-    try {
-      const tasksResponse = await axiosApi.get<ApiTasksList | null>('/tasks.json');
-      const tasks = tasksResponse.data;
+    const tasksResponse = await axiosApi.get<ApiTasksList | null>('/tasks.json');
+    const tasks = tasksResponse.data;
 
-      let newTasks: Task[] = [];
+    let newTasks: Task[] = [];
 
-      if (tasks) {
-        newTasks = Object.keys(tasks).map(id => {
-          const task = tasks[id];
-          return {
-            ...task,
-            id
-          }
-        });
-      }
-      return (newTasks);
-    } finally {
-
+    if (tasks) {
+      newTasks = Object.keys(tasks).map(id => {
+        const task = tasks[id];
+        return {
+          ...task,
+          id
+        }
+      });
     }
+    return (newTasks);
 
   }
 );
